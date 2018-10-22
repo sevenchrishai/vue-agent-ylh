@@ -2,7 +2,7 @@
   <div class="login">
     <header class="header">
       <div class="logo">
-        <img src="/static/images/portal_logo.png" alt="logo">
+        <img src="../assets/img/portal_logo.png" alt="logo">
         <span>{{logo_title}}</span>
       </div>
       <div class="language">
@@ -37,7 +37,7 @@
               <el-switch v-model="ruleForm.rememberMe"></el-switch>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary large" @click="submitForm('ruleForm')" class="login-btn">登录</el-button>
+              <el-button type="primary large" @click="submitForm('ruleForm')" class="login-btn" v-loading.fullscreen.lock="fullscreenLoading">登录</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -52,12 +52,13 @@
     data() {
       return {
         msg: 'Welcome to Your Vue.js App',
+        fullscreenLoading: false,
         logo_title: '代理商后台管理系统',
         language: '语言',
         ruleForm: {
-          loginId: '',
-          name: '',
-          pwd: '',
+          loginId: 'admin',
+          name: 'admin',
+          pwd: 'admin',
           rememberMe: false
         },
         rules: {
@@ -79,13 +80,16 @@
     methods: {
       submitForm(formName){
         this.$refs[formName].validate((valid) => {
-          if (valid){
-            alert('login')
-            this.$router.push({name: 'home'})
-          }else {
-            console.log('error submit')
-            return false;
-          }
+          this.fullscreenLoading = true;
+          setTimeout(() => {
+            this.fullscreenLoading = false;
+            if (valid){
+              this.$router.push({path: '/home'})
+            }else {
+              console.log('error submit')
+              return false;
+            }
+          }, 800);
         })
       }
     }
@@ -128,7 +132,7 @@
     width: 1200px;
     margin: 0 auto;
     height: 600px;
-    background: url(/static/images/login_pic.png) no-repeat;
+    background: url(../assets/img/login_pic.png) no-repeat;
     background-size: 100%;
     .login-part{
       position: absolute;

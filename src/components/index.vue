@@ -1,10 +1,10 @@
 <template>
-  <div class="home">
+  <div class="index" id="app">
     <el-container>
       <el-header>
         <div class="top">
           <div class="l">
-            <img src="/static/images/portal_logo.png" alt="">
+            <img src="../assets/img/portal_logo.png" alt="">
             <span>欢迎您！管理员/admin</span>
           </div>
           <div class="r">
@@ -18,7 +18,7 @@
               </el-dropdown-menu>
             </el-dropdown>
             <div class="exit">
-              <i class="el-icon-mobile-phone"></i>
+              <router-link tag="i" class="el-icon-mobile-phone" to="luckywheel"></router-link>
               <i class="el-icon-circle-close"></i>
             </div>
           </div>
@@ -34,60 +34,36 @@
       </el-header>
       <el-container class="main">
         <el-aside width="200px">
-          <el-menu :default-active="0" class="el-menu-vertical-demo"
-                   @open="handleOpen"
-                   @close="handleClose">
-            <el-menu-item index="1">
-              <i class="el-icon-menu"></i>
-              <span slot="title">首页</span>
+          <el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" router>
+            <el-menu-item index="/home">
+                <i class="el-icon-menu"></i>
+                <span slot="title">首页</span>
             </el-menu-item>
-            <el-menu-item index="2">
+            <el-menu-item index="/usermanager">
               <i class="el-icon-mobile-phone"></i>
               <span slot="title">用户管理</span>
             </el-menu-item>
-            <el-menu-item index="3">
+            <el-menu-item index="/merchantmanager">
               <i class="el-icon-goods"></i>
               <span slot="title">商家管理</span>
             </el-menu-item>
-            <el-menu-item index="4">
+            <el-menu-item index="/trademanager">
               <i class="el-icon-sold-out"></i>
               <span slot="title">交易管理</span>
             </el-menu-item>
-            <el-menu-item index="5">
+            <el-menu-item index="/reportmanager">
               <i class="el-icon-document"></i>
               <span slot="title">报表管理</span>
             </el-menu-item>
-            <el-menu-item index="6">
+            <el-menu-item index="/settlemanager">
               <i class="el-icon-printer"></i>
               <span slot="title">结算管理</span>
             </el-menu-item>
           </el-menu>
         </el-aside>
         <el-main>
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>今日新增商户数</span>
-              <div>0</div>
-            </div>
-            <div class="">
-              本周
-            </div>
-            <div>
-              0
-            </div>
-          </el-card>
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>今日交易金额</span>
-              <div>0</div>
-            </div>
-            <div class="">
-              本周
-            </div>
-            <div>
-              0
-            </div>
-          </el-card>
+          <!--主窗口-->
+          <router-view></router-view>
         </el-main>
       </el-container>
       <el-footer>
@@ -103,7 +79,7 @@
 
 <script>
   export default {
-    name: "home",
+    name: "index",
     data() {
       return {
         msg: 'hello'
@@ -117,11 +93,13 @@
       handleClose(key, keyPath) {
         console.log(key, keyPath);
       }
+    },
+    components: {
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .el-header{
     height: 120px !important;
     padding: 0;
@@ -167,6 +145,8 @@
       padding: 0 40px;
       display: flex;
       justify-content: space-between;
+      border-bottom: 1px solid #EEE;
+      box-sizing: border-box;
       .l{
         line-height: 60px;
         margin-left: 60px;
@@ -191,10 +171,13 @@
     margin: 0 auto;
   }
 
-  .box-card {
-    width: 450px;
-    margin: 0 10px;
-    float: left;
+  .el-menu{
+    background-color: #D3DCE6;
+    color: #48576a;
+    .el-menu-item.is-active{
+      border-right: 4px solid #20a0ff;
+      color: #20a0ff;
+    }
   }
 
   .el-aside {
@@ -205,14 +188,14 @@
   }
 
   .el-main {
-    background-color: #E9EEF3;
-    color: #333;
+    background-color: #fff;
+    color: #48576a;
     text-align: left;
   }
 
   .el-footer{
     width: 100%;
-    margin-top: 90px;
+    margin-top: 190px;
     background-color: #fff;
     line-height: 60px;
     text-align: center;
