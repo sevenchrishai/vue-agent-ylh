@@ -9,13 +9,13 @@ import merchantmanager from '../components/sub/merchantmanager'
 import trademanager from '../components/sub/trademanager'
 import reportmanager from '../components/sub/reportmanager'
 import settlemanager from '../components/sub/settlemanager'
-
+import errorpage from '../components/404'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {path: '/', redirect: '/login'},
+    {path: '*', redirect: '/404'},
     {path: '/', name: 'index', component: index, children: [
         {path: '/home', name: '首页', component: home},
         {path: '/usermanager', name: '用户管理', component: usermanager},
@@ -26,6 +26,7 @@ export default new Router({
       ]},
     {path: '/login', name: 'login', component: login},
     {path: '/luckywheel', name: 'luckywheel', component: luckywheel},
+    {path: '/404', name: '', component: errorpage},
 
   ],
 })
