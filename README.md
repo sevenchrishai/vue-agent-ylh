@@ -20,6 +20,8 @@ npm run build --report
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
+## [项目预览地址](https://sevenchrishai.github.io/vue-agent-ylh/dist/#/login)
+
 ## 踩坑记录
 
 1. build之后css设置的背景图片不显示问题
