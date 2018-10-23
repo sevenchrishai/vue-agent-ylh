@@ -19,7 +19,7 @@
             </el-dropdown>
             <div class="exit">
               <router-link tag="i" class="el-icon-mobile-phone" to="luckywheel"></router-link>
-              <i class="el-icon-circle-close"></i>
+              <i class="el-icon-circle-close" @click="logout"></i>
             </div>
           </div>
         </div>
@@ -92,7 +92,18 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
-      }
+      },
+      //退出登录
+      logout: function () {
+        var _this = this;
+        this.$confirm('确认退出吗?', '提示', {
+          //type: 'warning'
+        }).then(() => {
+          _this.$router.push('/login');
+        }).catch(() => {
+
+        });
+      },
     },
     components: {
     }
@@ -169,6 +180,29 @@
   .main{
     width: 1200px;
     margin: 0 auto;
+  }
+
+  .pag{
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin: 10px 0px;
+  }
+
+  .panel .panel-title {
+    color: #535351;
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+  }
+
+  .fl{
+    float: left;
+  }
+  .fr{
+    float: right;
   }
 
   .el-menu{

@@ -33,11 +33,11 @@
             <el-form-item label="" prop="pwd">
               <el-input v-model="ruleForm.pwd" placeholder="请输入登录密码" type="password"></el-input>
             </el-form-item>
-            <el-form-item label="记住我" class="remember-me">
-              <el-switch v-model="ruleForm.rememberMe"></el-switch>
+            <el-form-item label="" class="remember-me">
+              <el-checkbox v-model="ruleForm.rememberMe">记住我</el-checkbox>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary large" @click="submitForm('ruleForm')" class="login-btn" v-loading.fullscreen.lock="fullscreenLoading">登录</el-button>
+              <el-button type="primary large" @click="submitForm('ruleForm')" class="login-btn" :loading="loading">登录</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -52,7 +52,7 @@
     data() {
       return {
         msg: 'Welcome to Your Vue.js App',
-        fullscreenLoading: false,
+        loading: false,
         logo_title: '代理商后台管理系统',
         language: '语言',
         ruleForm: {
@@ -80,9 +80,9 @@
     methods: {
       submitForm(formName){
         this.$refs[formName].validate((valid) => {
-          this.fullscreenLoading = true;
+          this.loading = true;
           setTimeout(() => {
-            this.fullscreenLoading = false;
+            this.loading = false;
             if (valid){
               this.$router.push({path: '/home'})
             }else {
