@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import index from './components/index'
 import Mock from './mock'
 Mock.bootstrap()
 
